@@ -1,6 +1,7 @@
-alert("Assalomu alaykum!");
-alert("Dasturimizga xush kelibsiz!");
+alert("Assalomu alaykum");
+alert("Dasturimizga xush kelibsiz ! ");
 
+        // HTML elementlarni chaqirish qismi 
 const addButton = document.querySelector('.add-task');
 const randomButton = document.querySelector('.random-task');
 const clearLastButton = document.querySelector('.clear-last');
@@ -13,25 +14,25 @@ const levelSelect = document.querySelector('.levels');
 const categoriesInput = document.querySelector('.categories');
 const descriptionInput = document.querySelector('.description');
 
-const stats = {
+const Levels = {
     total: 0,
     Easy: 0,
     Medium: 0,
     Hard: 0
 };
 
-// Tasks array as objects
+// Array ga elementlar qo'shish 
 let tasks = [];
 
-// Update stats function
-function updateStats() {
-    document.querySelector('.right__container ul li:nth-child(1) span').textContent = stats.total;
-    document.querySelector('.right__container ul li:nth-child(2) span').textContent = stats.Easy;
-    document.querySelector('.right__container ul li:nth-child(3) span').textContent = stats.Medium;
-    document.querySelector('.right__container ul li:nth-child(4) span').textContent = stats.Hard;
+// Level larni upDate qilish
+function updateLevels() {
+    document.querySelector('.right__container ul li:nth-child(1) span').textContent = Levels.total;
+    document.querySelector('.right__container ul li:nth-child(2) span').textContent = Levels.Easy;
+    document.querySelector('.right__container ul li:nth-child(3) span').textContent = Levels.Medium;
+    document.querySelector('.right__container ul li:nth-child(4) span').textContent = Levels.Hard;
 }
 
-// Create task
+// Task yaratish qismi 
 function createTaskObject(taskName, level, categories, description) {
     const task = { taskName, level, categories, description };
     tasks.push(task);
@@ -45,13 +46,13 @@ function createTaskObject(taskName, level, categories, description) {
     `;
     taskList.appendChild(taskItem);
 
-    // Update stats
-    stats.total++;
-    stats[level]++;
-    updateStats();
+    // Level larni Update qilish (ya'ni increment qilib 1 ni qo'shib ketish)
+    Levels.total++;
+    Levels[level]++;
+    updateLevels();
 }
 
-// ADD TASK
+// ADD TASK button (Task qo'shadi)
 addButton.addEventListener('click', () => {
     const taskName = taskNameInput.value.trim();
     const level = levelSelect.value;
@@ -59,7 +60,7 @@ addButton.addEventListener('click', () => {
     const description = descriptionInput.value.trim();
 
     if (!taskName || !level || !categories || !description) {
-        alert("Bo'sh maydonni to'ldiring!");
+        alert("Bo'sh maydonni to'ldiring !");
         return;
     }
 
@@ -70,29 +71,29 @@ addButton.addEventListener('click', () => {
     descriptionInput.value = '';
 });
 
-// CLEAR LAST
+// CLEAR LAST button (oxirgi taskni o'chiradi)
 clearLastButton.addEventListener('click', () => {
     if (tasks.length > 0) {
         const lastTask = tasks.pop();
-        stats.total--;
-        stats[lastTask.level]--;
+        Levels.total--;
+        Levels[lastTask.level]--;
         taskList.removeChild(taskList.lastElementChild);
-        updateStats();
+        updateLevels();
     }
 });
 
-// CLEAR FIRST
+// CLEAR FIRST button (dastlabki taskni o'chiradi)
 clearFirstButton.addEventListener('click', () => {
     if (tasks.length > 0) {
         const firstTask = tasks.shift();
-        stats.total--;
-        stats[firstTask.level]--;
+        Levels.total--;
+        Levels[firstTask.level]--;
         taskList.removeChild(taskList.firstElementChild);
-        updateStats();
+        updateLevels();
     }
 });
 
-// ALL UPPERCASE
+// ALL UPPERCASE button (task nomidagi barcha index dagi belgilarni katta harf qilish jarayoni)
 uppercaseButton.addEventListener('click', () => {
     tasks.forEach((task, index) => {
         task.taskName = task.taskName.toUpperCase();
@@ -100,3 +101,7 @@ uppercaseButton.addEventListener('click', () => {
         taskItem.querySelector('h4').innerHTML = `${task.taskName} <span>[${task.level}]</span>`;
     });
 });
+
+// classList → elementdagi classlarni qo‘shish, o‘chirish, almashtirish va tekshirish imkonini beradi.
+// forEach -> Array elementlarini birma-bir ko‘rib chiqib, ularga biror amal bajarish uchun ishlatiladi.
+// arraydagi har bir elementni qayta ishlash uchun ishlatiladi, lekin yangi array yaratmaydi.
