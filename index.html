@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> To-do Adventure Game 2 </title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <!-- LEFT container -->
+    <div class="left__container">
+        <h3> Yangi vazifa qo‘shish </h3>
+
+        <p> Vazifa nomi </p>
+        <input type="text" placeholder="Masalan: Find the sword" />
+
+        <p> Qiyinchilik </p>
+        <select class="levels">
+            <option value="Easy"> Easy </option>
+            <option value="Medium"> Medium </option>
+            <option value="Hard"> Hard </option>
+        </select>
+
+        <p> Kategoriya (vergul bilan) </p>
+        <input class="categories" type="text" placeholder="work,home,urgent" />
+
+        <p> Tavsif </p>
+        <textarea class="description" placeholder="Qisqacha vazifa tavsifi..."></textarea>
+
+        <div class="buttons">
+            <button class="add-task"> ADD TASK </button>
+            <button class="random-task"> RANDOM TASK (unshift) </button>
+            <button class="clear-last"> CLEAR LAST (pop) </button>
+            <button class="clear-first"> CLEAR FIRST (shift) </button>
+        </div> <!-- buttons -->
+
+        <button class="uppercase__btn"> ALL UPPERCASE </button>
+
+        <p> String methods: trim(), toLowerCase(), toUpperCase(), split(), join(), slice() </p>
+
+        <div class="filters">
+            <button class="filter"> All </button>
+            <button class="filter"> Easy </button>
+            <button class="filter"> Medium </button>
+            <button class="filter"> Hard </button>
+            <button class="filter"> Completed </button>
+            <input class="search" type="text" placeholder="Search title..." />
+        </div> <!-- filters -->
+
+        <div class="task-list"></div>
+    </div> <!-- left__container -->
+
+    <!-- RIGHT container -->
+    <div class="right__container">
+        <h3> Statistics </h3>
+        <ul>
+            <li> Total tasks: <span> 0 </span> </li>
+            <li> Easy: <span> 0 </span> </li>
+            <li> Medium: <span> 0 </span> </li>
+            <li> Hard: <span> 0 </span> </li>
+            <li> Completed: <span> 0 </span> </li>
+        </ul>
+
+        <h4> Categories </h4>
+        <p class="stat-categories"> stealth, castle, deliver, town, quest, village, cave, explore </p>
+
+        <h4> Tips </h4>
+        <p> push() qo‘shadi, pop() oxirgisini o‘chiradi, shift() boshdagisini o‘chiradi, unshift() boshiga qo‘shadi. flat() 
+            nested arrays ochadi. </p>
+    </div> <!-- right__container -->
+  </div> <!-- container -->
+
+  <script src="index.js"></script>
+</body>
+</html>
